@@ -1,9 +1,13 @@
 const fs = require("fs");
 
 const { createCanvas, loadImage } = require("canvas");
+const { TesseractWorker } = require("tesseract.js");
+const tessWorker = new TesseractWorker({
+    langPath: "."
+});
 
-const W = 22.4;
-const H = 10.8;
+const W = 224;
+const H = 108;
 const canvas = createCanvas(W, H);
 const ctx = canvas.getContext("2d");
 
@@ -13,11 +17,16 @@ function getHash(arr) {
     return arr.map(item => (item >= average ? 1 : 0)).join("");
 }
 
-async function getImgHash(name) {
+async function getImgHash(name, filed) {
     const img = await loadImage(`./screencap/${name}.png`);
     ctx.clearRect(0, 0, W, H);
     ctx.drawImage(img, 0, 0, W, H);
-    const data = ctx.getImageData(W * 0.75, H * 0.5, W * 0.25, H * 0.5).data;
+    const data = ctx.getImageData(
+        filed[0] / 10,
+        filed[1] / 10,
+        filed[2] / 10,
+        filed[3] / 10
+    ).data;
 
     const grayList = [];
     data.forEach((c, index) => {
@@ -32,4 +41,22 @@ async function getImgHash(name) {
     return getHash(grayList);
 }
 
-module.exports = { getImgHash };
+async function ocr(name, filed) {
+    const img = await loadImage(`./screencap/${name}.png`);
+    ctx.clearRect(0, 0, W, H);
+    ctx.drawImage(
+        img,
+        filed[0],
+        filed[1],
+        filed[2] - filed[0],
+        filed[3] - filed[1],
+        0,
+        0,
+        W,
+        H
+    );
+
+    const data = await tessWorker.recognize(canvas.toBuffer(), "chi_sim");
+    return data.text.replace(/\s/g, "");
+}
+module.exports = { getImgHash, ocr };
