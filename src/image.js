@@ -19,6 +19,8 @@ function getHash(arr) {
 
 async function getImgHash(name, filed) {
     const img = await loadImage(`./screencap/${name}.png`);
+    canvas.width = W;
+    canvas.height = H;
     ctx.clearRect(0, 0, W, H);
     ctx.drawImage(img, 0, 0, W, H);
     const data = ctx.getImageData(
@@ -42,19 +44,13 @@ async function getImgHash(name, filed) {
 }
 
 async function ocr(name, filed) {
+    const _W = filed[2] - filed[0];
+    const _H = filed[3] - filed[1];
+    canvas.width = _W;
+    canvas.height = _H;
     const img = await loadImage(`./screencap/${name}.png`);
-    ctx.clearRect(0, 0, W, H);
-    ctx.drawImage(
-        img,
-        filed[0],
-        filed[1],
-        filed[2] - filed[0],
-        filed[3] - filed[1],
-        0,
-        0,
-        W,
-        H
-    );
+
+    ctx.drawImage(img, filed[0], filed[1], _W, _H, 0, 0, _W, _H);
 
     const data = await tessWorker.recognize(canvas.toBuffer(), "chi_sim");
     return data.text.replace(/\s/g, "");

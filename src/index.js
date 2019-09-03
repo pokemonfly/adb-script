@@ -2,11 +2,11 @@ const { getScreenshot, click } = require("./adb");
 const { getImgHash, ocr } = require("./image");
 const baseConfig = [
     {
-        image: "1",
-        name: "准备进入",
+        name: "开始行动",
+        ocr: "开始行动",
         action: { x: 1960, y: 993, r: 10 },
         delay: 2e3,
-        field: [1814, 868, 2091, 909]
+        field: [1916, 965, 2088, 1010]
     },
     {
         image: "5",
@@ -23,16 +23,17 @@ const baseConfig = [
         field: [1737, 583, 1887, 945]
     },
     {
-        name: "战斗结束",
+        name: "行动结束",
         ocr: "行动结束",
         action: { x: 1860, y: 900, r: 50 },
-        delay: 5e3,
+        delay: 2e3,
         field: [136, 870, 688, 1014]
     },
     {
-        image: "4",
         name: "理智不足",
-        field: [1119, 87, 1560, 132]
+        ocr: "药剂恢复",
+        field: [1252, 100, 1460, 137],
+        action: process.argv[2] == "yes" ? { x: 1767, y: 865, r: 10 } : false
     }
 ];
 let _lastPage = 0;
@@ -56,7 +57,7 @@ async function runner(config) {
         for (let i = 0; i < config.length; i++) {
             if (config[i].ocr) {
                 let text = await ocr("now", config[i].field);
-                if (text == config[i].ocr) {
+                if (text.indexOf(config[i].ocr) > -1) {
                     res = config[i];
                     break;
                 }
