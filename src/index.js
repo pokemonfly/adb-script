@@ -25,14 +25,14 @@ const baseConfig = [
     {
         name: "行动结束",
         ocr: "行动结束",
-        action: { x: 1860, y: 900, r: 50 },
+        action: { x: 1860, y: 500, r: 50 },
         delay: 2e3,
         field: [136, 870, 688, 1014]
     },
     {
         name: "理智不足",
         ocr: "药剂恢复",
-        field: [1252, 100, 1460, 137],
+        field: [1327, 137, 1460, 174],
         action: process.argv[2] == "yes" ? { x: 1767, y: 865, r: 10 } : false
     }
 ];
