@@ -25,7 +25,7 @@ const baseConfig = [
     {
         name: "行动结束",
         ocr: "行动结束",
-        action: { x: 1860, y: 900, r: 50 },
+        action: { x: 1820, y: 530, r: 50 },
         delay: 2e3,
         field: [136, 870, 688, 1014]
     },
