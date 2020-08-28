@@ -1,22 +1,22 @@
 {
-    "name": "adbtool",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "node ./src/index.js",
-        "test": "node ./src/test.js",
-        "sc": "node ./src/sc.js"
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "babel-cli": "^6.26.0",
-        "babel-preset-env": "^1.7.0"
-    },
-    "dependencies": {
-        "rxjs": "^6.5.3",
-        "sharp": "^0.23.4",
-        "tesseract.js": "^2.0.1"
-    }
+  "name": "adbtool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node --files src/index.ts",
+    "test": "ts-node --files src/test.ts",
+    "sc": "node ./src/sc.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.6.0",
+    "chalk": "^4.1.0",
+    "fix-path": "^3.0.0",
+    "sharp": "^0.25.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7",
+    "ws": "^7.3.1"
+  }
 }
