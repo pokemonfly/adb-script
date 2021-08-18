@@ -4,8 +4,8 @@ import cfg from "./cfg";
 import { timeDelay } from "./utils";
 
 const defaultState = {
-  useStone: false, // 恰石头
-  loopCount: 88, // 次数
+  useStone: true, // 恰石头
+  loopCount: 999, // 次数
 };
 const core = new Core({ cfg, defaultState });
 const remote = new Remote();
@@ -24,6 +24,5 @@ remote.onImage(async (buff) => {
     action.type && remote.touch(action);
     await timeDelay(action.delay || 1);
   }
-  core.toLog();
   remote.next();
 });

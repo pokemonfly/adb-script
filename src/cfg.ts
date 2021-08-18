@@ -15,7 +15,7 @@ export default [
     action: {
       type: "tap",
       data: [538, 257],
-      delay: 1,
+      delay: 3,
     },
     after: (state) => {
       state.state = "menu";
@@ -40,7 +40,7 @@ export default [
   {
     name: "理智药",
     file: "drug",
-    field: [309, 35, 100, 18],
+    field: [422, 36, 33, 15],
     needCheck: (state) => {
       return state.state == "menu";
     },
@@ -53,7 +53,7 @@ export default [
   {
     name: "理智药",
     file: "stone",
-    field: [309, 35, 100, 18],
+    field: [342, 141, 35, 31],
     needCheck: (state) => {
       return state.state == "menu";
     },
@@ -95,8 +95,7 @@ export default [
   {
     name: "结束",
     file: "finish",
-    // field: [41, 242, 31, 34],
-    field: [95, 213, 22, 12],
+    field: [343, 199, 89, 9],
     needCheck: (state) => {
       return state.state == "battle";
     },

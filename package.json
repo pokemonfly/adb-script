@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node --files src/index.ts",
+    "sc": "ts-node --files src/sc.ts",
     "test": "ts-node --files src/test.ts",
-    "sc": "node ./src/sc.js"
+    "testcv": "ts-node --files src/testcv.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^14.6.0",
+    "@types/node": "^14.6.2",
     "chalk": "^4.1.0",
     "fix-path": "^3.0.0",
     "sharp": "^0.25.4",

@@ -5,7 +5,7 @@ import { timeDelay, compare } from "./utils";
 const sharp = require("sharp");
 
 const step = cfg.filter(c => c.file == 'finish')[0];
-sharp(`./screencap/1598596165013.png`)
+sharp(`./screencap/1602220695726.png`)
   .extract({
     left: step.field[0],
     top: step.field[1],
@@ -24,7 +24,7 @@ sharp(`./screencap/1598596165013.png`)
       .toBuffer()
       .then(async (base) => {
         let r = await compare(target, base);
-        
+        // if (res[0] < 6 && res[1] < 6 && res[2] > 0.7) {
         console.log(r);
       });
   });
